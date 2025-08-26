@@ -11,6 +11,8 @@ import {
 } from "motion/react";
 
 import React, { useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -112,7 +114,6 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     </motion.div>
   );
 };
-
 export const NavItems = ({
   items,
   className,
@@ -132,15 +133,15 @@ export const NavItems = ({
       )}
     >
       {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => !mobile && setHovered(idx)}
+        <Link
+          key={`link-${idx}`}
+          href={item.link}
           onClick={onItemClick}
           className={cn(
             "relative px-4 py-2 text-neutral-600 dark:text-neutral-300",
             mobile && "w-full text-left"
           )}
-          key={`link-${idx}`}
-          href={item.link}
+          onMouseEnter={() => !mobile && setHovered(idx)}
         >
           {!mobile && hovered === idx && (
             <motion.div
@@ -149,7 +150,7 @@ export const NavItems = ({
             />
           )}
           <span className="relative z-20">{item.name}</span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   );
@@ -242,24 +243,18 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
-      href="#"
+    <Link
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30}
-      />
+      <Image src="/logo.png" alt="logo" width={30} height={30} />
       <span className="font-medium text-black dark:text-white">Auriora</span>
-    </a>
+    </Link>
   );
 };
-
 export const NavbarButton = ({
   href,
-  as: Tag = "a",
+  as: Tag = "button",
   children,
   className,
   variant = "primary",
@@ -286,12 +281,18 @@ export const NavbarButton = ({
       "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
   };
 
+  const classes = cn(baseStyles, variantStyles[variant], className);
+
+  if (href) {
+    return (
+      <Link href={href} className={classes} {...props}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
+    <Tag className={classes} {...props}>
       {children}
     </Tag>
   );
