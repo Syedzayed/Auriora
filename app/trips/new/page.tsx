@@ -12,7 +12,7 @@ export default function NewTrip() {
   const [isPending, startTransition] = useTransition();
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   return (
-    <div className="max-w-lg mx-auto mt-10">
+    <div className="max-w-lg mx-auto mt-10 py-30">
       <Card>
         <CardHeader> New Trip</CardHeader>
         <CardContent>

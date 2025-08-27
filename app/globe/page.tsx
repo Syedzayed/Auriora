@@ -48,30 +48,37 @@ export default function GlobePage() {
       globeRef.current.controls().autoRotateSpeed = 1;
     }
   }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {" "}
-      <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen w-full relative">
+      {/* Radial Gradient Background from Bottom */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 90%, #fff 40%, #6366f1 100%)",
+        }}
+      />
+
+      {/* Page Content */}
+      <div className="relative z-10 container mx-auto px-4 py-30">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-center text-4xl font-bold mb-12">
-            {" "}
             Your Travel Journey
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-2 bg-white ronded-xl shadow-lg overflow-hidden">
+            {/* Globe */}
+            <div className="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="p-6">
                 <h2 className="text-2xl font-semibold mb-4">
-                  {" "}
                   See where you have been...
                 </h2>
 
                 <div className="h-[600px] w-full relative">
                   {isLoading ? (
                     <div className="flex items-center justify-center h-full">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900">
-                        {" "}
-                      </div>
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
                     </div>
                   ) : (
                     <Globe
@@ -93,27 +100,23 @@ export default function GlobePage() {
               </div>
             </div>
 
+            {/* Sidebar */}
             <div className="lg:col-span-1">
               <Card className="sticky top-8">
                 <CardHeader>
-                  {" "}
-                  <CardTitle> Countries Visited</CardTitle>
+                  <CardTitle>Countries Visited</CardTitle>
                 </CardHeader>
                 <CardContent>
                   {isLoading ? (
                     <div className="flex items-center justify-center h-full">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900">
-                        {" "}
-                      </div>
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
                     </div>
                   ) : (
                     <div className="space-y-4">
                       <div className="bg-blue-50 p-4 rounded-lg">
                         <p className="text-sm text-blue-800">
-                          {" "}
                           You have visited{" "}
                           <span className="font-bold">
-                            {" "}
                             {visitedCountries.size}
                           </span>{" "}
                           countries.
@@ -126,10 +129,10 @@ export default function GlobePage() {
                           .map((country, key) => (
                             <div
                               key={key}
-                              className="flex items-center gap-2 p-3 rounded-lg hover: bg-gray-50 transition-colors border border-gray-100"
+                              className="flex items-center gap-2 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100"
                             >
                               <MapPin className="h-4 w-4 text-red-500" />
-                              <span className="font-medium"> {country}</span>
+                              <span className="font-medium">{country}</span>
                             </div>
                           ))}
                       </div>
@@ -140,7 +143,7 @@ export default function GlobePage() {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8">
+    <div className="container mx-auto px-4 py-30 space-y-8">
       {trip.imageUrl && (
         <div className="w-full h-72 md:h-96 overflow-hidden rounded-xl shadow-lg relative">
           <Image

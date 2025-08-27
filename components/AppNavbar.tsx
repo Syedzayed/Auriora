@@ -20,9 +20,9 @@ export default function AppNavbar({ session }: { session: Session | null }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
+    { name: "About", link: "/about" },
     { name: "Plan a Trip", link: "/trips" },
     { name: "My Globe", link: "/globe" },
-    { name: "Dream Board", link: "/dream-board" },
   ];
 
   return (
