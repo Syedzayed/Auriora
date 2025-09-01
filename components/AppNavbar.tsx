@@ -23,6 +23,7 @@ export default function AppNavbar({ session }: { session: Session | null }) {
     { name: "About", link: "/about" },
     { name: "Plan a Trip", link: "/trips" },
     { name: "My Globe", link: "/globe" },
+    { name: "Contact", link: "/contact" },
   ];
 
   return (

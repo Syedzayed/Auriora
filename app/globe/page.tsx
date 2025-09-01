@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import FooterSection from "@/components/ui/footer";
 import { MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Globe, { GlobeMethods } from "react-globe.gl";
@@ -50,100 +51,105 @@ export default function GlobePage() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full relative">
-      {/* Radial Gradient Background from Bottom */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(125% 125% at 50% 90%, #fff 40%, #6366f1 100%)",
-        }}
-      />
+    <>
+      <div className="min-h-screen w-full relative">
+        {/* Radial Gradient Background from Bottom */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(125% 125% at 50% 90%, #fff 40%, #6366f1 100%)",
+          }}
+        />
 
-      {/* Page Content */}
-      <div className="relative z-10 container mx-auto px-4 py-30">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-center text-4xl font-bold mb-12">
-            Your Travel Journey
-          </h1>
+        {/* Page Content */}
+        <div className="relative z-10 container mx-auto px-4 py-30">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-center text-4xl font-bold mb-12">
+              Your Travel Journey
+            </h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            {/* Globe */}
-            <div className="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold mb-4">
-                  See where you have been...
-                </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+              {/* Globe */}
+              <div className="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="p-6">
+                  <h2 className="text-2xl font-semibold mb-4">
+                    See where you have been...
+                  </h2>
 
-                <div className="h-[600px] w-full relative">
-                  {isLoading ? (
-                    <div className="flex items-center justify-center h-full">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
-                    </div>
-                  ) : (
-                    <Globe
-                      ref={globeRef}
-                      globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-                      bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                      backgroundColor="rgba(0,0,0,0)"
-                      pointColor={() => "#FF5733"}
-                      pointLabel="name"
-                      pointsData={locations}
-                      pointRadius={0.5}
-                      pointAltitude={0.1}
-                      pointsMerge={true}
-                      width={800}
-                      height={600}
-                    />
-                  )}
+                  <div className="h-[600px] w-full relative">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
+                      </div>
+                    ) : (
+                      <Globe
+                        ref={globeRef}
+                        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+                        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+                        backgroundColor="rgba(0,0,0,0)"
+                        pointColor={() => "#FF5733"}
+                        pointLabel="name"
+                        pointsData={locations}
+                        pointRadius={0.5}
+                        pointAltitude={0.1}
+                        pointsMerge={true}
+                        width={800}
+                        height={600}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <Card className="sticky top-8">
-                <CardHeader>
-                  <CardTitle>Countries Visited</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {isLoading ? (
-                    <div className="flex items-center justify-center h-full">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
-                    </div>
-                  ) : (
-                    <div className="space-y-4">
-                      <div className="bg-blue-50 p-4 rounded-lg">
-                        <p className="text-sm text-blue-800">
-                          You have visited{" "}
-                          <span className="font-bold">
-                            {visitedCountries.size}
-                          </span>{" "}
-                          countries.
-                        </p>
+              {/* Sidebar */}
+              <div className="lg:col-span-1">
+                <Card className="sticky top-8">
+                  <CardHeader>
+                    <CardTitle>Countries Visited</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
                       </div>
+                    ) : (
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-sm text-blue-800">
+                            You have visited{" "}
+                            <span className="font-bold">
+                              {visitedCountries.size}
+                            </span>{" "}
+                            countries.
+                          </p>
+                        </div>
 
-                      <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
-                        {Array.from(visitedCountries)
-                          .sort()
-                          .map((country, key) => (
-                            <div
-                              key={key}
-                              className="flex items-center gap-2 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100"
-                            >
-                              <MapPin className="h-4 w-4 text-red-500" />
-                              <span className="font-medium">{country}</span>
-                            </div>
-                          ))}
+                        <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+                          {Array.from(visitedCountries)
+                            .sort()
+                            .map((country, key) => (
+                              <div
+                                key={key}
+                                className="flex items-center gap-2 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100"
+                              >
+                                <MapPin className="h-4 w-4 text-red-500" />
+                                <span className="font-medium">{country}</span>
+                              </div>
+                            ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div>
+        <FooterSection />
+      </div>
+    </>
   );
 }

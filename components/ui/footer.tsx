@@ -22,7 +22,7 @@ const links = [
 
 export default function FooterSection() {
   return (
-    <footer className="py-16 md:py-32 bg-black">
+    <footer className="py-16 md:py-20 ">
       <div className="mx-auto max-w-5xl px-6">
         <Link href="/" aria-label="go home" className="mx-auto flex size-fit ">
           <Image
@@ -32,7 +32,7 @@ export default function FooterSection() {
             height={30}
             className="mx-auto"
           />
-          <span className="font-medium text-white">Auriora</span>
+          <span className="font-medium text-gray-600">Auriora</span>
         </Link>
 
         <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
@@ -175,7 +175,7 @@ export default function FooterSection() {
         </div>
         <span className="text-muted-foreground block text-center text-sm">
           {" "}
-          © {new Date().getFullYear()} Tailark, All rights reserved
+          © {new Date().getFullYear()} Auriora, All rights reserved
         </span>
       </div>
     </footer>

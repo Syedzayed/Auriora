@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import { pt } from "date-fns/locale";
+
 import {
   motion,
   AnimatePresence,
@@ -265,10 +265,8 @@ export const NavbarButton = ({
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+} & React.ComponentPropsWithoutRef<"button"> &
+  React.ComponentPropsWithoutRef<"a">) => {
   const baseStyles =
     "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
@@ -284,15 +282,21 @@ export const NavbarButton = ({
   const classes = cn(baseStyles, variantStyles[variant], className);
 
   if (href) {
+    // ✅ Link case (only pass anchor props here)
+    const { ...anchorProps } = props as React.ComponentPropsWithoutRef<"a">;
     return (
-      <Link href={href} className={classes} {...props}>
-        {children}
+      <Link href={href} legacyBehavior>
+        <a className={classes} {...anchorProps}>
+          {children}
+        </a>
       </Link>
     );
   }
 
+  // ✅ Button case (only pass button props here)
+  const { ...buttonProps } = props as React.ComponentPropsWithoutRef<"button">;
   return (
-    <Tag className={classes} {...props}>
+    <Tag className={classes} {...buttonProps}>
       {children}
     </Tag>
   );

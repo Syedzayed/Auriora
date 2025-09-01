@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import FooterSection from "@/components/ui/footer";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col py-20">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col pt-20">
       {/* Hero Section */}
       <section className="pt-28 pb-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
@@ -18,7 +19,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Main Content Section (text-only update) */}
+      {/* Main Content Section */}
       <section className="py-20 px-6 max-w-4xl mx-auto text-left space-y-8">
         <p className="text-lg text-gray-700 leading-relaxed">
           Like many of you, I've always had a love for travel, but the high
@@ -84,6 +85,7 @@ const AboutPage = () => {
           </Link>
         </div>
       </section>
+      <FooterSection />
     </div>
   );
 };

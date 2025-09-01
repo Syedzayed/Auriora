@@ -5,13 +5,12 @@ import { Highlight } from "@/components/ui/hero-highlight";
 
 import ShinyText from "@/components/ui/ShinyText";
 
-import { WobbleCard } from "@/components/ui/wobble-card";
-
 import Link from "next/link";
 import Image from "next/image";
 
 import HoverExpand from "@/components/ui/hover-expand";
 import Footer from "@/components/ui/footer";
+import FeatureSteps from "@/components/ui/Features";
 
 export default function Home() {
   const images = [
@@ -125,61 +124,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="min-h-screen w-full relative bg-black flex items-center justify-center px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
-          {/* Step 1 */}
-          <WobbleCard
-            containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px]"
-            className=""
-          >
-            <div className="max-w-xs">
-              <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                1️⃣ Plan Your Trip
-              </h2>
-              <p className="mt-4 text-left text-base/6 text-neutral-200">
-                Choose your dream destinations, craft your perfect itinerary,
-                and get ready for the adventure ahead.
-              </p>
-            </div>
-            <Image
-              src="/Atravelerlookingatamap.jpg"
-              width={550}
-              height={500}
-              alt="Plan trip"
-              className="absolute -right-4 lg:-right-[30%] -bottom-10 object-contain rounded-2xl shadow-lg"
-            />
-          </WobbleCard>
-
-          {/* Step 2 */}
-          <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-green-700">
-            <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              2️⃣ Follow the Lights
-            </h2>
-            <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-              Discover hidden gems, new experiences, and breathtaking places as
-              you travel.
-            </p>
-          </WobbleCard>
-
-          {/* Step 3 */}
-          <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
-            <div className="max-w-sm">
-              <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                3️⃣ Track Your Adventures
-              </h2>
-              <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-                Save memories, keep track of your journeys, and share your story
-                with others.
-              </p>
-            </div>
-            <Image
-              src="/footprintsonsand.jpg"
-              width={450}
-              height={500}
-              alt="Track adventures"
-              className="absolute -right-10 md:-right-[40%] lg:-right-[10%] -bottom-15 object-contain rounded-2xl shadow-lg"
-            />
-          </WobbleCard>
+      <section className="min-h-screen w-full bg-black">
+        <div className="  py-20">
+          {" "}
+          <FeatureSteps />
         </div>
       </section>
       <section className="min-h-screen w-full bg-black flex flex-col items-center justify-center text-center px-4 py-12">
@@ -203,7 +151,9 @@ export default function Home() {
           maxThumbnails={11}
         />
       </section>
-      <Footer />
+      <div className="bg-black">
+        <Footer />
+      </div>
     </main>
   );
 }
