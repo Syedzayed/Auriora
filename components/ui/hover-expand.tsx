@@ -14,8 +14,7 @@ interface HoverExpandProps {
 export default function HoverExpand({
   images,
   initialSelectedIndex = 0,
-  thumbnailHeight = 200,
-  modalImageSize = 400,
+
   maxThumbnails = 11,
 }: HoverExpandProps) {
   const [selectedIndex, setSelectedIndex] =
