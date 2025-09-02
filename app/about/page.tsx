@@ -2,6 +2,40 @@ import React from "react";
 import Link from "next/link";
 import FooterSection from "@/components/ui/footer";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About - Auriora",
+  description:
+    "Learn more about Auriora, the all-in-one travel planner designed to help you organize trips, manage bucket lists, and explore the world effortlessly.",
+  keywords: [
+    "Auriora",
+    "About Auriora",
+    "Travel Planner",
+    "Trip Planning",
+    "Bucket List",
+    "Globe Explorer",
+    "Plan Trips",
+  ],
+  openGraph: {
+    title: "About - Auriora",
+    description:
+      "Discover the story behind Auriora and how we make travel planning simpler, smarter, and more enjoyable.",
+    url: "https://yourdomain.com/about",
+    siteName: "Auriora",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Auriora Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col pt-20">
@@ -68,6 +102,14 @@ const AboutPage = () => {
           for everyone. So, let’s make that bucket list happen, together.
         </p>
 
+        <p className="text-lg text-gray-700 leading-relaxed">
+          Your feedback is invaluable as we grow. If you have any suggestions,
+          notice an issue, or just want to share your experience, please let me
+          know. If there are features you'd like to see added, I'll do my best
+          to implement them as soon as possible. I'm committed to resolving any
+          problems quickly to make your travel planning seamless.
+        </p>
+
         {/* Call to Action */}
         <div className="my-20 text-center">
           <h3 className="text-3xl font-bold text-gray-900 mb-4">
@@ -78,11 +120,18 @@ const AboutPage = () => {
             budget to see the world. You only need a plan — and the courage to
             take the first step.
           </p>
-          <Link href="/trips">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-200 shadow-md">
-              Start Your Adventure Today
-            </button>
-          </Link>
+          <div className="flex justify-center items-center space-x-4">
+            <Link href="/trips">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-200 shadow-md">
+                Start Your Adventure Today
+              </button>
+            </Link>
+            <Link href="/contact">
+              <button className="bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-100 font-medium py-3 px-8 rounded-lg transition-all duration-200">
+                Contact Us
+              </button>
+            </Link>
+          </div>
         </div>
       </section>
       <FooterSection />

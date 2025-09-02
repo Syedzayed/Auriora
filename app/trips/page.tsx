@@ -4,6 +4,40 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import FooterSection from "@/components/ui/footer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Trips - Auriora",
+  description:
+    "Plan your perfect trip with Auriora. Create itineraries, manage bucket lists, and explore destinations effortlessly with our smart trip planner.",
+  keywords: [
+    "Auriora",
+    "Trips",
+    "Trip Planner",
+    "Travel Planner",
+    "Plan a Trip",
+    "Itinerary Builder",
+    "Bucket List",
+    "Explore Destinations",
+  ],
+  openGraph: {
+    title: "Trips - Auriora",
+    description:
+      "Organize and plan your next adventure with Auriora’s trip planner. Build itineraries, track your bucket list, and travel smarter.",
+    url: "https://yourdomain.com/trips",
+    siteName: "Auriora",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Auriora Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
 
 export default async function TripsPage() {
   const session = await auth();
