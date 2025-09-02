@@ -20,23 +20,6 @@ export const metadata: Metadata = {
     "Bucket List",
     "Explore Destinations",
   ],
-  openGraph: {
-    title: "Trips - Auriora",
-    description:
-      "Organize and plan your next adventure with Auriora’s trip planner. Build itineraries, track your bucket list, and travel smarter.",
-    url: "https://yourdomain.com/trips",
-    siteName: "Auriora",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Auriora Logo",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
 };
 
 export default async function TripsPage() {

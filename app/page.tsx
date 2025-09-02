@@ -17,23 +17,6 @@ export const metadata: Metadata = {
     "travel globe",
     "explore destinations",
   ],
-  openGraph: {
-    title: "Auriora - Plan Your Perfect Trip",
-    description:
-      "Plan smarter, travel better. Create bucket lists, organize trips, and explore with Auriora.",
-    url: "https://yourdomain.com",
-    siteName: "Auriora",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Auriora Logo",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
 };
 
 export default function Page() {

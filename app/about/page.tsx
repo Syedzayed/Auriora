@@ -17,23 +17,6 @@ export const metadata: Metadata = {
     "Globe Explorer",
     "Plan Trips",
   ],
-  openGraph: {
-    title: "About - Auriora",
-    description:
-      "Discover the story behind Auriora and how we make travel planning simpler, smarter, and more enjoyable.",
-    url: "https://yourdomain.com/about",
-    siteName: "Auriora",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Auriora Logo",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
 };
 
 const AboutPage = () => {
@@ -109,6 +92,25 @@ const AboutPage = () => {
           know. If there are features you would like to see added, I will do my
           best to implement them as soon as possible. I am committed to
           resolving any problems quickly to make your travel planning seamless.
+        </p>
+
+        {/* --- NEW PARAGRAPH ADDED HERE --- */}
+        <p className="text-lg text-gray-700 leading-relaxed">
+          Building and maintaining Auriora is a true labor of love, driven by a
+          passion for travel and community. If you find this tool helpful and
+          believe in its vision, you can support the project by{" "}
+          <a
+            href="https://buymeacoffee.com/zayed"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-blue-600 hover:underline"
+          >
+            buying me a coffee
+          </a>
+          . Your contribution, no matter the size, directly helps cover server
+          costs and allows me to dedicate more time to developing the new
+          features you’re waiting for. Thank you for being a part of this
+          journey!
         </p>
 
         {/* Call to Action */}
