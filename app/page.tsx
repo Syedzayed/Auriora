@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Home from "@/components/Home"; // import client component
+import Home from "@/components/Home";
 
 export const metadata: Metadata = {
   title: "Auriora - Plan Your Perfect Trip",
