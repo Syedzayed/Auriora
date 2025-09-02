@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 interface HoverExpandProps {
   images: string[];
@@ -61,9 +62,10 @@ export default function HoverExpand({
               layoutId={`image-${i}`}
               className="absolute inset-0 size-full"
             >
-              <img
+              <Image
                 src={imageUrl}
                 alt={`Image ${i + 1}`}
+                fill
                 className="size-full object-cover  transition-transform duration-300 "
               />
             </motion.div>
@@ -88,9 +90,10 @@ export default function HoverExpand({
                 layoutId={`image-${selectedIndex}`}
                 className="relative size-96"
               >
-                <img
+                <Image
                   src={images[selectedIndex]}
                   alt={`Image ${selectedIndex + 1}`}
+                  fill
                   className="absolute left-1/2 top-1/2  size-full -translate-x-1/2 -translate-y-1/2 object-cover"
                 />
               </motion.div>
