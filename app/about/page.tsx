@@ -56,11 +56,11 @@ const AboutPage = () => {
       {/* Main Content Section */}
       <section className="py-20 px-6 max-w-4xl mx-auto text-left space-y-8">
         <p className="text-lg text-gray-700 leading-relaxed">
-          Like many of you, I've always had a love for travel, but the high
+          Like many of you, I have always had a love for travel, but the high
           costs often felt like a roadblock. For years, my adventures were
           limited to short, budget-friendly trips, all while I dreamed of a life
           of boundless exploration. I kept that dream alive, believing that one
-          day I'd find a way to make it a reality.
+          day I would find a way to make it a reality.
         </p>
 
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -69,7 +69,7 @@ const AboutPage = () => {
           cooking meals with a different view out the window, and making the
           open road their home—was a revelation. It was the ultimate expression
           of travel, and it instantly became my biggest bucket list goal. The
-          idea of living and traveling in an RV wasn't just about the journey;
+          idea of living and traveling in an RV was not just about the journey;
           it was about the freedom to choose your path every single day.
         </p>
 
@@ -80,15 +80,15 @@ const AboutPage = () => {
           be too. I wanted to create a tool to help fellow travelers like me
           plan their adventures, no matter the size or budget. This website, in
           its current form, is a simple, functional version of that vision—a
-          starting point. It's the tip of the iceberg, as they say.
+          starting point. It is the tip of the iceberg, as they say.
         </p>
 
         <p className="text-lg text-gray-700 leading-relaxed">
-          I'm pouring my heart into building the next phase. Soon, we'll
+          I am pouring my heart into building the next phase. Soon, we will
           introduce a smart{" "}
           <span className="font-semibold">AI travel assistant</span> that can
           help you with everything from finding the best routes to discovering
-          hidden gems. We'll also launch a dedicated{" "}
+          hidden gems. We will also launch a dedicated{" "}
           <span className="font-semibold">bucket list tracker</span> to help you
           visualize and achieve your biggest travel dreams, and a community
           feature so you can connect with other adventurers.
@@ -96,18 +96,19 @@ const AboutPage = () => {
 
         <p className="text-lg text-gray-700 leading-relaxed">
           <span className="font-semibold">Auriora</span> is more than just a
-          planner; it's a testament to the idea that you don't need a massive
-          budget to see the world. You just need a plan and the courage to take
-          the first step. My mission is to make travel accessible and exciting
-          for everyone. So, let’s make that bucket list happen, together.
+          planner; it is a testament to the idea that you **do not** need a
+          massive budget to see the world. You just need a plan and the courage
+          to take the first step. My mission is to make travel accessible and
+          exciting for everyone. So, let us make that bucket list happen,
+          together.
         </p>
 
         <p className="text-lg text-gray-700 leading-relaxed">
           Your feedback is invaluable as we grow. If you have any suggestions,
           notice an issue, or just want to share your experience, please let me
-          know. If there are features you'd like to see added, I'll do my best
-          to implement them as soon as possible. I'm committed to resolving any
-          problems quickly to make your travel planning seamless.
+          know. If there are features you would like to see added, I will do my
+          best to implement them as soon as possible. I am committed to
+          resolving any problems quickly to make your travel planning seamless.
         </p>
 
         {/* Call to Action */}
@@ -116,9 +117,9 @@ const AboutPage = () => {
             Join Us on This Journey
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Auriora isn’t just a planner; it’s proof that you don’t need a huge
-            budget to see the world. You only need a plan — and the courage to
-            take the first step.
+            Auriora is not just a planner; it is proof that you **do not** need
+            a huge budget to see the world. You only need a plan — and the
+            courage to take the first step.
           </p>
           <div className="flex justify-center items-center space-x-4">
             <Link href="/trips">
