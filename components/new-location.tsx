@@ -1,13 +1,15 @@
 "use client";
 
-import { useTransition, useState } from "react";
+import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { addLocation } from "@/lib/actions/add-location";
-import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 export default function NewLocationClient({ tripId }: { tripId: string }) {
-  const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | null>(null);
+  const boundAction = addLocation.bind(null, tripId);
+
+  const [state, formAction, isPending] = useActionState(boundAction, {
+    error: null,
+  });
 
   return (
     <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center bg-gray-50">
@@ -20,27 +22,7 @@ export default function NewLocationClient({ tripId }: { tripId: string }) {
             Enter a city, landmark, or full address
           </p>
 
-          <form
-            className="space-y-5"
-            action={(formData: FormData) => {
-              setError(null);
-              startTransition(async () => {
-                try {
-                  await addLocation(formData, tripId);
-                } catch (err: unknown) {
-                  // IMPORTANT: Next.js redirect() throws a special error internally.
-                  // We must re-throw it so the redirect actually happens.
-                  if (isRedirectError(err)) throw err;
-
-                  const message =
-                    err instanceof Error
-                      ? err.message
-                      : "Something went wrong. Please try again.";
-                  setError(message);
-                }
-              });
-            }}
-          >
+          <form action={formAction} className="space-y-5">
             <div>
               <label
                 htmlFor="location-address"
@@ -58,10 +40,10 @@ export default function NewLocationClient({ tripId }: { tripId: string }) {
               />
             </div>
 
-            {error && (
+            {state?.error && (
               <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm flex items-center gap-2">
                 <span>⚠️</span>
-                <span>{error}</span>
+                <span>{state.error}</span>
               </div>
             )}
 

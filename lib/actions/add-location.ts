@@ -20,7 +20,7 @@ async function geocodeAddress(
 
   if (!data.results || data.results.length === 0) {
     throw new Error(
-      `Could not geocode address: "${address}". Status: ${data.status}`
+      `Could not find location: "${address}". Please try a more specific address.`
     );
   }
 
@@ -28,32 +28,52 @@ async function geocodeAddress(
   return { lat, lng };
 }
 
-export async function addLocation(formData: FormData, tripId: string) {
+// Returns { error } on failure, redirects on success
+export async function addLocation(
+  tripId: string,
+  _prevState: { error: string | null },
+  formData: FormData
+): Promise<{ error: string | null }> {
   const session = await auth();
 
-  if (!session || !session.user?.id) {
-    throw new Error("Not authenticated");
+  if (!session) {
+    return { error: "You must be signed in to add a location." };
+  }
+
+  const userId = session.user?.id;
+  if (!userId) {
+    return {
+      error: "Session error: user ID not found. Please sign out and sign in again.",
+    };
   }
 
   const address = formData.get("address")?.toString();
   if (!address) {
-    throw new Error("Missing address");
+    return { error: "Please enter an address." };
   }
 
   // Verify this trip belongs to the current user
   const trip = await prisma.trip.findFirst({
-    where: { id: tripId, userId: session.user.id },
+    where: { id: tripId, userId },
   });
 
   if (!trip) {
-    throw new Error("Trip not found or access denied.");
+    return { error: "Trip not found or you do not have access to it." };
   }
 
-  const { lat, lng } = await geocodeAddress(address);
+  let lat: number, lng: number;
+  try {
+    ({ lat, lng } = await geocodeAddress(address));
+  } catch (err: unknown) {
+    return {
+      error:
+        err instanceof Error
+          ? err.message
+          : "Could not geocode address. Please try again.",
+    };
+  }
 
-  const count = await prisma.location.count({
-    where: { tripId },
-  });
+  const count = await prisma.location.count({ where: { tripId } });
 
   await prisma.location.create({
     data: {
