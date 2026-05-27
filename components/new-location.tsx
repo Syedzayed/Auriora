@@ -3,6 +3,7 @@
 import { useTransition, useState } from "react";
 import { Button } from "./ui/button";
 import { addLocation } from "@/lib/actions/add-location";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 export default function NewLocationClient({ tripId }: { tripId: string }) {
   const [isPending, startTransition] = useTransition();
@@ -27,6 +28,10 @@ export default function NewLocationClient({ tripId }: { tripId: string }) {
                 try {
                   await addLocation(formData, tripId);
                 } catch (err: unknown) {
+                  // IMPORTANT: Next.js redirect() throws a special error internally.
+                  // We must re-throw it so the redirect actually happens.
+                  if (isRedirectError(err)) throw err;
+
                   const message =
                     err instanceof Error
                       ? err.message
@@ -60,11 +65,7 @@ export default function NewLocationClient({ tripId }: { tripId: string }) {
               </div>
             )}
 
-            <Button
-              type="submit"
-              disabled={isPending}
-              className="w-full"
-            >
+            <Button type="submit" disabled={isPending} className="w-full">
               {isPending ? "Adding location..." : "Add Location"}
             </Button>
           </form>
