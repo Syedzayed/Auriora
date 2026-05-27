@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import GlobePage from "@/components/GlobePage";
 import { auth } from "@/auth";
-import { login } from "@/lib/auth-actions";
 import FooterSection from "@/components/ui/footer";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "My Globe - Auriora",
@@ -42,14 +42,12 @@ export default async function Page() {
             Sign in to visualize your travel journey on an interactive 3D globe
             and track every country you&apos;ve explored.
           </p>
-          <form action={login}>
-            <button
-              type="submit"
-              className="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition text-lg"
-            >
-              Sign In to View Your Globe
-            </button>
-          </form>
+          <Link
+            href="/login"
+            className="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition text-lg"
+          >
+            Sign In to View Your Globe
+          </Link>
         </div>
         <FooterSection />
       </>

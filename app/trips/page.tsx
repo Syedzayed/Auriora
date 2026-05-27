@@ -5,7 +5,6 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import FooterSection from "@/components/ui/footer";
 import type { Metadata } from "next";
-import { login } from "@/lib/auth-actions";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -59,14 +58,12 @@ export default async function TripsPage() {
             Sign in to start planning trips, building itineraries, and tracking
             your journeys around the world.
           </p>
-          <form action={login}>
-            <button
-              type="submit"
-              className="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition text-lg"
-            >
-              Sign In to Get Started
-            </button>
-          </form>
+          <Link
+            href="/login"
+            className="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition text-lg"
+          >
+            Sign In to Get Started
+          </Link>
         </div>
         <FooterSection />
       </>

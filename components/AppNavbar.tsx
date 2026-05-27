@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { login, logout } from "@/lib/auth-actions";
+import { logout } from "@/lib/auth-actions";
 import { Session } from "next-auth";
+import Link from "next/link";
 
 import {
   Navbar,
@@ -37,9 +38,11 @@ export default function AppNavbar({ session }: { session: Session | null }) {
             Sign Out
           </NavbarButton>
         ) : (
-          <NavbarButton as="button" onClick={login} variant="dark">
-            Sign In
-          </NavbarButton>
+          <Link href="/login">
+            <NavbarButton as="span" variant="dark">
+              Sign In
+            </NavbarButton>
+          </Link>
         )}
       </NavBody>
 
@@ -63,9 +66,11 @@ export default function AppNavbar({ session }: { session: Session | null }) {
               Sign Out
             </NavbarButton>
           ) : (
-            <NavbarButton as="button" onClick={login} variant="dark">
-              Sign In
-            </NavbarButton>
+            <Link href="/login" onClick={() => setIsOpen(false)} className="w-full">
+              <NavbarButton as="span" variant="dark" className="w-full text-center">
+                Sign In
+              </NavbarButton>
+            </Link>
           )}
         </MobileNavMenu>
       </MobileNav>
