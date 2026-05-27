@@ -5,6 +5,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import FooterSection from "@/components/ui/footer";
 import type { Metadata } from "next";
+import { login } from "@/lib/auth-actions";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Trips - Auriora",
@@ -42,9 +44,32 @@ export default async function TripsPage() {
 
   if (!session) {
     return (
-      <div className="flex justify-center items-center h-screen text-gray-700 text-xl">
-        Please Sign In .
-      </div>
+      <>
+        <div
+          className="min-h-screen w-full relative flex flex-col items-center justify-center text-center px-6"
+          style={{
+            background:
+              "radial-gradient(125% 125% at 50% 90%, #fff 40%, #6366f1 100%)",
+          }}
+        >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            Plan Your Next Adventure
+          </h1>
+          <p className="text-lg text-gray-600 mb-8 max-w-md">
+            Sign in to start planning trips, building itineraries, and tracking
+            your journeys around the world.
+          </p>
+          <form action={login}>
+            <button
+              type="submit"
+              className="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition text-lg"
+            >
+              Sign In to Get Started
+            </button>
+          </form>
+        </div>
+        <FooterSection />
+      </>
     );
   }
 
@@ -76,7 +101,7 @@ export default async function TripsPage() {
             <CardContent>
               <p>
                 {trips.length === 0
-                  ? "Start Planning your frist trip by clicking the button above."
+                  ? "Start planning your first trip by clicking the button above."
                   : `You have ${trips.length} ${
                       trips.length === 1 ? "trip" : "trips"
                     } planned. ${
@@ -89,13 +114,23 @@ export default async function TripsPage() {
           </Card>
 
           <div>
-            <h2 className="text-xl font-semibold mb-4">Your Recent Trips</h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Your Recent Trips</h2>
+              {sortedTrips.length > 6 && (
+                <Link
+                  href="/trips/all"
+                  className="text-sm text-indigo-600 hover:underline font-medium"
+                >
+                  View all trips →
+                </Link>
+              )}
+            </div>
             {trips.length === 0 ? (
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-8">
-                  <h3 className="text-xl font-medium mb-2">No Trips yet.</h3>
+                  <h3 className="text-xl font-medium mb-2">No trips yet.</h3>
                   <p className="text-center mb-4 max-w-md">
-                    Start Planning Your Adventure by Creating Your First Trip.
+                    Start planning your adventure by creating your first trip.
                   </p>
                   <Link href="/trips/new">
                     <Button>Create Trip</Button>
@@ -106,18 +141,29 @@ export default async function TripsPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {sortedTrips.slice(0, 6).map((trip, key) => (
                   <Link key={key} href={`/trips/${trip.id}`}>
-                    <Card className="h-full hover:shadow-md transition-shadow">
+                    <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden">
+                      {trip.imageUrl && (
+                        <div className="relative w-full h-40 overflow-hidden">
+                          <Image
+                            src={trip.imageUrl}
+                            alt={trip.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
                       <CardHeader>
                         <CardTitle className="line-clamp-1">
                           {trip.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm line-clamp-2">
+                        <p className="text-sm text-gray-500 line-clamp-2 mb-2">
                           {trip.description}
                         </p>
-                        <div className="text-sm">
-                          {new Date(trip.startDate).toLocaleDateString()} -{" "}
+                        <div className="text-xs text-gray-400 font-medium">
+                          {new Date(trip.startDate).toLocaleDateString()} –{" "}
                           {new Date(trip.endDate).toLocaleDateString()}
                         </div>
                       </CardContent>

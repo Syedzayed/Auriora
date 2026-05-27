@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import GlobePage from "@/components/GlobePage"; // your client component
+import GlobePage from "@/components/GlobePage";
 import { auth } from "@/auth";
+import { login } from "@/lib/auth-actions";
+import FooterSection from "@/components/ui/footer";
 
 export const metadata: Metadata = {
   title: "My Globe - Auriora",
@@ -25,9 +27,32 @@ export default async function Page() {
 
   if (!session) {
     return (
-      <div className="flex justify-center items-center h-screen text-gray-700 text-xl">
-        Please Sign In .
-      </div>
+      <>
+        <div
+          className="min-h-screen w-full relative flex flex-col items-center justify-center text-center px-6"
+          style={{
+            background:
+              "radial-gradient(125% 125% at 50% 90%, #fff 40%, #6366f1 100%)",
+          }}
+        >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            See Where You&apos;ve Been
+          </h1>
+          <p className="text-lg text-gray-600 mb-8 max-w-md">
+            Sign in to visualize your travel journey on an interactive 3D globe
+            and track every country you&apos;ve explored.
+          </p>
+          <form action={login}>
+            <button
+              type="submit"
+              className="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition text-lg"
+            >
+              Sign In to View Your Globe
+            </button>
+          </form>
+        </div>
+        <FooterSection />
+      </>
     );
   }
   return <GlobePage />;

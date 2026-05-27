@@ -26,7 +26,7 @@ export default function FooterSection() {
             height={30}
             className="mx-auto"
           />
-          <span className="font-medium text-gray-600">Auriora</span>
+          <span className="font-medium text-gray-800">Auriora</span>
         </Link>
 
         <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">

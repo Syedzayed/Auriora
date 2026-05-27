@@ -141,6 +141,7 @@ export default function FeatureSteps() {
                         className="h-full w-full transform object-cover transition-transform hover:scale-105"
                         width={1000}
                         height={500}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="from-black via-black/60 absolute right-0 bottom-0 left-0 h-2/3 bg-gradient-to-t to-transparent" />
 

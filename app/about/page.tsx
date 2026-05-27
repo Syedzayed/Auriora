@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col pt-16">
       {/* Hero Section */}
       <section className="pt-28 pb-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
@@ -79,11 +79,11 @@ const AboutPage = () => {
 
         <p className="text-lg text-gray-700 leading-relaxed">
           <span className="font-semibold">Auriora</span> is more than just a
-          planner; it is a testament to the idea that you **do not** need a
-          massive budget to see the world. You just need a plan and the courage
-          to take the first step. My mission is to make travel accessible and
-          exciting for everyone. So, let us make that bucket list happen,
-          together.
+          planner; it is a testament to the idea that you{" "}
+          <strong>do not</strong> need a massive budget to see the world. You
+          just need a plan and the courage to take the first step. My mission is
+          to make travel accessible and exciting for everyone. So, let us make
+          that bucket list happen, together.
         </p>
 
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -119,9 +119,9 @@ const AboutPage = () => {
             Join Us on This Journey
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Auriora is not just a planner; it is proof that you **do not** need
-            a huge budget to see the world. You only need a plan — and the
-            courage to take the first step.
+            Auriora is not just a planner; it is proof that you{" "}
+          <strong>do not</strong> need a huge budget to see the world. You only
+          need a plan — and the courage to take the first step.
           </p>
           <div className="flex justify-center items-center space-x-4">
             <Link href="/trips">

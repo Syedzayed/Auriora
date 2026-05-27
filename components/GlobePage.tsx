@@ -15,6 +15,8 @@ export interface TransformedLocation {
 
 export default function GlobePage() {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [globeWidth, setGlobeWidth] = useState(600);
 
   const [visitedCountries, setVisitedCountries] = useState<Set<string>>(
     new Set()
@@ -48,6 +50,18 @@ export default function GlobePage() {
       globeRef.current.controls().autoRotate = true;
       globeRef.current.controls().autoRotateSpeed = 1;
     }
+  }, [isLoading]);
+
+  // Dynamically set globe width from container
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setGlobeWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   return (
@@ -77,7 +91,7 @@ export default function GlobePage() {
                     See where you have been...
                   </h2>
 
-                  <div className="h-[600px] w-full relative">
+                  <div ref={containerRef} className="h-[600px] w-full relative">
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
@@ -94,7 +108,7 @@ export default function GlobePage() {
                         pointRadius={0.5}
                         pointAltitude={0.1}
                         pointsMerge={true}
-                        width={800}
+                        width={globeWidth}
                         height={600}
                       />
                     )}

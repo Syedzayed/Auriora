@@ -73,6 +73,12 @@ export default function Home() {
             >
               Follow the Lights
             </Link>
+            <Link
+              href="/about"
+              className="px-6 py-3 rounded-xl border border-white/60 text-white hover:bg-white/10 font-medium transition"
+            >
+              Learn More &rarr;
+            </Link>
           </div>
         </div>
       </section>
@@ -147,7 +153,7 @@ export default function Home() {
           initialSelectedIndex={0}
           thumbnailHeight={400}
           modalImageSize={800}
-          maxThumbnails={11}
+          maxThumbnails={7}
         />
       </section>
       <div className="bg-black">
